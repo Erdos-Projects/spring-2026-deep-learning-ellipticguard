@@ -1,6 +1,14 @@
 
 # EllipticGuard: Graph Deep Learning for Bitcoin Illicit Activity Detection
 
+## Team Members
+
+Ran Li
+Shaoyang Zhou
+Rafael Miksian Magaldi
+Prakash Singh
+Tinghao Huang
+
 ## Project Description
 
 Detecting illicit activity (such as fraud) in Bitcoin transactions is a major challenge, as effective detection can prevent significant financial losses and legal risks. In this repository, we detect illicit transactions in Bitcoin using a range of modeling approaches, from classical statistical models to graph neural networks (GNNs) and hybrid methods that combine both. Our goal is to compare how effectively these approaches identify illicit transactions in complex transaction networks.
