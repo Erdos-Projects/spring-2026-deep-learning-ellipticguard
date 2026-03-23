@@ -70,12 +70,12 @@ Here is a summary of model performance:
 
 | Model Name | Test PR-AUC |
 | --- | --- |
-| Logistic Regression | `TBD` |
-| Linear SGD | `TBD` |
+| Linear SGD | 0.1542 |
+| Logistic Regression | 0.1993 |
+| HistGradientBoosting | 0.5543 |
+| Feature-only MLP | 0.3863|
 | Random Forest | 0.8911 |
-| XGBoost| `TBD` |
-| LightGMB | `TBD`  |
-| ET-600 | `0.8965` |
+| ET-600 | 0.8965 |
 
 ### GNN models
 
@@ -94,7 +94,7 @@ Here is a summary of model performance:
 | Model Name | Test PR-AUC |
 | --- | --- |
 | GCN | 0.6022 |
-| GAT | `TBD` |
+| GAT | 0.6947 |
 | GraphSage | 0.8153 |
 | GraphGPS | 0.8252 |
 | APPNP | 0.9150 |
