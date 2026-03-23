@@ -72,10 +72,10 @@ Here is a summary of model performance:
 | --- | --- |
 | Logistic Regression | `TBD` |
 | Linear SGD | `TBD` |
-| Random Forest | TBD |
+| Random Forest | 0.8911 |
 | XGBoost| `TBD` |
 | LightGMB | `TBD`  |
-| ET-600 | `0.8960` |
+| ET-600 | 0.8960 |
 
 ### GNN models
 
@@ -93,12 +93,12 @@ Here is a summary of model performance:
 
 | Model Name | Test PR-AUC |
 | --- | --- |
-| GCN | `TBD` |
+| GCN | 0.6022 |
 | GAT | `TBD` |
-| GraphSage | `TBD` |
-| GraphGPS | `TBD` |
-| APPNP | `0.9150` |
-| SIGN | `0.9154` |
+| GraphSage | 0.8153 |
+| GraphGPS | 0.8252 |
+| APPNP | 0.9150 |
+| SIGN | 0.9154 |
 
 
 ### Hybrid models (Graph-Tree Integration):
@@ -128,10 +128,10 @@ This is implemented in `graph_non_gnn_models/GraphAgg_ET.ipynb`, which builds a 
 
 | Model Name | Test PR-AUC |
 | --- | --- |
-| Matryoshka Hybrid | `0.8943` |
-| Deep Neural Decision Forest | `TBD` |
-| Random Forest on Hybrid Features | `TBD` |
-| GraphAgg ET | `0.9050` |
+| Matryoshka Hybrid | 0.8943 |
+| Deep Neural Decision Forest | 0.8647 |
+| Random Forest on Hybrid Features | 0.8982 |
+| GraphAgg ET | 0.9050 |
 
 ### The Final Model 
 
