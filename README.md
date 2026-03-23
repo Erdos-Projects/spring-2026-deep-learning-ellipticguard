@@ -3,17 +3,6 @@
 
 Detecting illicit activity (such as fraud) in Bitcoin transactions is a major challenge, as effective detection can prevent significant financial losses and legal risks. In this repository, we detect illicit transactions in Bitcoin using a range of modeling approaches, from classical statistical models to graph neural networks (GNNs) and hybrid methods that combine both. Our goal is to compare how effectively these approaches identify illicit transactions in complex transaction networks.
 
-## Team Members
-
-Ran Li
-
-Shaoyang Zhou
-
-Rafael Miksian Magaldi
-
-Prakash Singh
-
-Tinghao Huang
 
 ## Dataset
 
@@ -143,3 +132,15 @@ The best final result came from a **combination model** implemented in `final_co
 | --- | --- |
 | Final Combination Model | 0.9187 |
 
+
+## Team Members
+
+Ran Li
+
+Shaoyang Zhou
+
+Rafael Miksian Magaldi
+
+Prakash Singh
+
+Tinghao Huang
