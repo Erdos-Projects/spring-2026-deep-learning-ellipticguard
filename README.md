@@ -41,6 +41,10 @@ The notebooks in the `eda` folder explain the data before modeling:
 
 - `eda/Basic_study_Prakash.ipynb`: Performs structural graph analysis, class summaries, and connectivity statistics.
 
+- `eda/elliptic_eda_preprocessing.ipynb`: Loads the packaged processed transaction graph, checks split coverage, and visualizes label and local-structure patterns on the graph.
+
+- `eda/EDA_KS_GraphSignal.ipynb`: Studies KS-based feature separation and graph-signal behavior under the time-forward split.
+
 ## Modeling Methods
 
 ### Time-forward split
@@ -71,7 +75,7 @@ Here is a summary of model performance:
 | Random Forest | TBD |
 | XGBoost| `TBD` |
 | LightGMB | `TBD`  |
-| ET-600 | `TBD` |
+| ET-600 | `0.8960` |
 
 ### GNN models
 
@@ -83,6 +87,7 @@ These models are explored across the following notebooks:
 - `gnn/gnn_models.ipynb`: GCN, GraphSAGE, GraphGPS.
 - `gnn/gat_model.ipynb` and `gnn/GAT model.ipynb`: Focused experiements on GAT.
 - `gnn/Directed_Residual_GNNs.ipynb`: SIGN, APPNP, LinearResidual.
+Among the currently uploaded standalone graph models, the strongest results come from the directed residual reruns in `gnn/Directed_Residual_GNNs.ipynb`, especially Directed SIGN residual and Directed APPNP residual.
 
 Here is a summary of model performance:
 
@@ -92,8 +97,8 @@ Here is a summary of model performance:
 | GAT | `TBD` |
 | GraphSage | `TBD` |
 | GraphGPS | `TBD` |
-| ANNAP | `TBD` |
-| SIGN | `TBD` |
+| APPNP | `0.9150` |
+| SIGN | `0.9154` |
 
 
 ### Hybrid models (Graph-Tree Integration):
@@ -118,7 +123,7 @@ The following notebooks address these challenges.
 
 **Approach 2**: Use graph-aggregated features directly to train tree-based models.
 
-This is implemented in `GraphAgg_ET.ipynb`, which builds a two-stage, non-GNN graph-learning pipeline: first, a time-respecting Extra Trees anchor model generates transaction risk scores, then those scores are converted into directed neighbor-risk aggregate features (in/out degree, mean/max neighbor risk, and high-risk neighbor counts) and combined with local transaction features in a second Extra Trees model. The final models reports a `0.9050` test PR-AUC, showing that directional graph aggregates can deliver strong graph-based gains even without a graph neural network.
+This is implemented in `graph_non_gnn_models/GraphAgg_ET.ipynb`, which builds a two-stage, non-GNN graph-learning pipeline: first, a time-respecting Extra Trees anchor model generates transaction risk scores, then those scores are converted into directed neighbor-risk aggregate features (in/out degree, mean/max neighbor risk, and high-risk neighbor counts) and combined with local transaction features in a second Extra Trees model. The final model reports a `0.9050` test PR-AUC, showing that directional graph aggregates can deliver strong graph-based gains even without a graph neural network.
 
 
 | Model Name | Test PR-AUC |
@@ -126,11 +131,11 @@ This is implemented in `GraphAgg_ET.ipynb`, which builds a two-stage, non-GNN gr
 | Matryoshka Hybrid | `TBD` |
 | Deep Neural Decision Forest | `TBD` |
 | Random Forest on Hybrid Features | `TBD` |
-| GraphAgg ET | `TBD` |
+| GraphAgg ET | `0.9050` |
 
 ### The Final Model 
 
-The best final result came from combining GraphAgg ET and SIGN.
+The best final result came from a preserved-head combination model that keeps the GraphAgg ET head, uses a 0.4 SIGN + 0.6 stack blend in a narrow middle band, and uses SIGN in the tail.
 
 | Model Name | Test PR-AUC |
 | --- | --- |
