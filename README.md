@@ -1,6 +1,8 @@
 
 # EllipticGuard: Graph Deep Learning for Bitcoin Illicit Activity Detection
 
+Detecting illicit activity (such as fraud) in Bitcoin transactions is a major challenge, as effective detection can prevent significant financial losses and legal risks. In this repository, we detect illicit transactions in Bitcoin using a range of modeling approaches, from classical statistical models to graph neural networks (GNNs) and hybrid methods that combine both. Our goal is to compare how effectively these approaches identify illicit transactions in complex transaction networks.
+
 ## Team Members
 
 Ran Li
@@ -12,10 +14,6 @@ Rafael Miksian Magaldi
 Prakash Singh
 
 Tinghao Huang
-
-## Project Description
-
-Detecting illicit activity (such as fraud) in Bitcoin transactions is a major challenge, as effective detection can prevent significant financial losses and legal risks. In this repository, we detect illicit transactions in Bitcoin using a range of modeling approaches, from classical statistical models to graph neural networks (GNNs) and hybrid methods that combine both. Our goal is to compare how effectively these approaches identify illicit transactions in complex transaction networks.
 
 ## Dataset
 
@@ -77,9 +75,11 @@ Here is a summary of model performance:
 | Random Forest | 0.8911 |
 | ET-600 | 0.8965 |
 
+Tree-based ensembles perform best, with Random Forest (0.8911) and Extra Trees (0.8965) achieving the highest PR-AUC. This suggests the data contains strong non-linear relationships and feature interactions, which tree ensembles capture effectively through recursive partitioning of the feature space.
+
 ### GNN models
 
-As baseline models use only tabular features and do not leverage graph information, we study several graph-based models for illicit transaction detection. These include **Graph Convolutional Network (GCN)**, which aggregates information from neighboring nodes through graph convolutions; **GraphSAGE** and its variants, which learn node representations by sampling and aggregating neighborhood features; **Graph Attention Network (GAT)**, which uses attention to weight neighbors differently; **General, Powerful, Scalable Graph Transformer(GraphGPS)**, which blends local message passing with transformer-style global attention; **Approximate Personalized Propagation of Neural Predictions (APPNP)**, which combines neural predictions with personalized propagation over the graph; and residual or propagation-based baselines such as **Scalable Inception Graph Neural Network (SIGN)**, **LinearResidual**, **MLP-Residual**, and **MLP-LayerNorm**, which test how far simpler architectures can go with appropriate feature propagation or skip connections.
+As baseline models use only tabular features and do not leverage graph information, we study several graph-based models for illicit transaction detection. These include **Graph Convolutional Network (GCN)**, which aggregates information from neighboring nodes through graph convolutions; **GraphSAGE** and its variants, which learn node representations by sampling and aggregating neighborhood features; **Graph Attention Network (GAT)**, which uses attention to weight neighbors differently; **General, Powerful, Scalable Graph Transformer(GraphGPS)**, which blends local message passing with transformer-style global attention; **Approximate Personalized Propagation of Neural Predictions (APPNP)**, which combines neural predictions with personalized propagation over the graph; and residual or propagation-based baselines such as **Scalable Inception Graph Neural Network (SIGN)**, **MLP-Residual**, and **MLP-LayerNorm**, which test how far simpler architectures can go with appropriate feature propagation or skip connections.
 
 These models are explored across the following notebooks:
 
@@ -100,6 +100,7 @@ Here is a summary of model performance:
 | APPNP | 0.9150 |
 | SIGN | 0.9154 |
 
+Performance improves from GCN to GAT and from GraphSAGE to GraphGPS, indicating that attention mechanisms help capture more informative neighborhood signals. Moreover, the strong results of the directed residual models suggest that adding graph information as a residual correction to a solid baseline is particularly effective. 
 
 ### Hybrid models (Graph-Tree Integration):
 
@@ -119,7 +120,7 @@ The following notebooks address these challenges.
 
 - `gnn/Pre_Shutdown_Hybrid_Matryoshkas.ipynb`: Addresses the first two challenges. In particular, **Matryoshka bottlenecks** train embeddings at multiple dimensions simultaneously, encouraging the model to compress essential structural information into low-dimensional representations and filter out topological noise. **Skip-GCN** introduces a residual pathway that preserves raw node features, helping prevent over-smoothing and retain important local information. Empirically, low-dimensional embeddings (e.g., 4D–16D) capture useful graph structure while avoiding overfitting, whereas larger embeddings degrade performance due to noise, confirming the dimensionality trap. The best hybrid models achieve performance comparable to strong tabular baselines while providing a more principled integration of graph information.
 
-- `graph_tree_hybrid.ipynb`: Addresses the third challenge via end-to-end training using a **Differentiable Neural Decision Forest (DNDF)**: the final prediction layer of GraphGPS is replaced by a differentiable decision-tree head (`max_depth = 5`), where routing is probabilistic rather than deterministic so the module can be trained with back propagation. The model is trained with embedding dimension D = 16, producing a node embedding matrix shaped for that tree-like objective. Those embeddings are concatenated with the original tabular features to train Random Forest models with `max_depth = 5`, which outperform the same random forest trained on tabular features only. In `hypothesis_testing.ipynb`, we use paired t-tests across 36 random-forest configurations (hybrid vs. tabular-only) to show that the hybrid gain is a consistent improvement, not a one-off.
+- `gnn/graph_tree_hybrid.ipynb`: Addresses the third challenge via end-to-end training using a **Differentiable Neural Decision Forest (DNDF)**: the final prediction layer of GraphGPS is replaced by a differentiable decision-tree head (`max_depth = 5`), where routing is probabilistic rather than deterministic so the module can be trained with back propagation. The model is trained with embedding dimension D = 16, producing a node embedding matrix shaped for that tree-like objective. Those embeddings are concatenated with the original tabular features to train Random Forest models with `max_depth = 5`, which outperform the same random forest trained on tabular features only. In `gnn/hypothesis_testing.ipynb`, we use paired t-tests across 36 random-forest configurations (hybrid vs. tabular-only) to show that the hybrid gain is a consistent improvement, not a one-off.
 
 **Approach 2**: Use graph-aggregated features directly to train tree-based models.
 
@@ -140,5 +141,5 @@ The best final result came from a **combination model** implemented in `final_co
 
 | Model Name | Test PR-AUC |
 | --- | --- |
-| Final Combination Model | `0.9187` |
+| Final Combination Model | 0.9187 |
 
