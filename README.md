@@ -75,7 +75,7 @@ Here is a summary of model performance:
 | Random Forest | 0.8911 |
 | XGBoost| `TBD` |
 | LightGMB | `TBD`  |
-| ET-600 | 0.8960 |
+| ET-600 | `0.8965` |
 
 ### GNN models
 
@@ -87,7 +87,7 @@ These models are explored across the following notebooks:
 - `gnn/gnn_models.ipynb`: GCN, GraphSAGE, GraphGPS.
 - `gnn/gat_model.ipynb` and `gnn/GAT model.ipynb`: Focused experiements on GAT.
 - `gnn/Directed_Residual_GNNs.ipynb`: SIGN, APPNP, LinearResidual.
-Among the currently uploaded standalone graph models, the strongest results come from the directed residual reruns in `gnn/Directed_Residual_GNNs.ipynb`, especially Directed SIGN residual and Directed APPNP residual.
+Among the currently uploaded standalone graph models, the strongest later graph results come from `gnn/Directed_Residual_GNNs.ipynb`. This notebook trains directed residual graph models that start from a strong tabular baseline, use the directed transaction graph to add local context, and predict only a small correction to the baseline score. The strongest results in this family are Directed SIGN residual and Directed APPNP residual.
 
 Here is a summary of model performance:
 
@@ -123,7 +123,7 @@ The following notebooks address these challenges.
 
 **Approach 2**: Use graph-aggregated features directly to train tree-based models.
 
-This is implemented in `graph_non_gnn_models/GraphAgg_ET.ipynb`, which builds a two-stage, non-GNN graph-learning pipeline: first, a time-respecting Extra Trees anchor model generates transaction risk scores, then those scores are converted into directed neighbor-risk aggregate features (in/out degree, mean/max neighbor risk, and high-risk neighbor counts) and combined with local transaction features in a second Extra Trees model. The final model reports a `0.9050` test PR-AUC, showing that directional graph aggregates can deliver strong graph-based gains even without a graph neural network.
+This is implemented in `graph_non_gnn_models/GraphAgg_ET.ipynb`, which builds a two-stage, non-GNN graph-learning pipeline. First, a time-respecting Extra Trees anchor model generates transaction risk scores. Then those scores are converted into directed neighbor-risk aggregate features, including in/out degree, mean and max neighbor risk, and counts of high-risk neighbors. These graph-derived features are combined with local transaction features in a second Extra Trees model. The final model reaches **0.9050 test PR-AUC**, showing that directional graph aggregates can deliver strong graph-based gains even without a graph neural network.
 
 
 | Model Name | Test PR-AUC |
@@ -133,11 +133,12 @@ This is implemented in `graph_non_gnn_models/GraphAgg_ET.ipynb`, which builds a 
 | Random Forest on Hybrid Features | 0.8982 |
 | GraphAgg ET | 0.9050 |
 
-### The Final Model 
 
-The best final result came from a preserved-head combination model that keeps the GraphAgg ET head, uses a 0.4 SIGN + 0.6 stack blend in a narrow middle band, and uses SIGN in the tail.
+### The Final Model
+
+The best final result came from a **combination model** implemented in `final_combination_models/Final_Best_Combination.ipynb`. This model keeps the strongest top part from the GraphAgg ET model, uses a short **0.4 SIGN + 0.6 stack** blend in a narrow middle band, and then uses **SIGN** for the remaining tail. This preserves the strongest graph-aware tree predictions while improving the rest of the final ordering with later graph models.
 
 | Model Name | Test PR-AUC |
 | --- | --- |
-| Final Model | 0.9187 |
+| Final Combination Model | `0.9187` |
 
