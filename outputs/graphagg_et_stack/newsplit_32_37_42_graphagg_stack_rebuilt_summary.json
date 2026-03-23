@@ -1,0 +1,117 @@
+{
+  "active_split": {
+    "train": [
+      1,
+      32
+    ],
+    "val": [
+      33,
+      37
+    ],
+    "test": [
+      38,
+      42
+    ]
+  },
+  "stage1_anchor": {
+    "model": "ExtraTreesClassifier",
+    "n_estimators": 600,
+    "max_features": "sqrt",
+    "class_weight": "balanced_subsample",
+    "random_state": 7,
+    "oof_scheme": "rolling_8_step_time_forward",
+    "oof_train_steps": [
+      9,
+      32
+    ],
+    "full_train_predict_steps": [
+      33,
+      42
+    ],
+    "fit_stats_head": [
+      {
+        "t": 9,
+        "fit_samples": 10718,
+        "pred_samples": 4996,
+        "fit_sec": 13.316415071487427
+      },
+      {
+        "t": 10,
+        "fit_samples": 9349,
+        "pred_samples": 6727,
+        "fit_sec": 8.021520137786865
+      },
+      {
+        "t": 11,
+        "fit_samples": 9204,
+        "pred_samples": 4296,
+        "fit_sec": 6.74636435508728
+      },
+      {
+        "t": 12,
+        "fit_samples": 8621,
+        "pred_samples": 2047,
+        "fit_sec": 6.541026592254639
+      },
+      {
+        "t": 13,
+        "fit_samples": 7687,
+        "pred_samples": 4528,
+        "fit_sec": 5.870297193527222
+      }
+    ],
+    "fit_stats_tail": [
+      {
+        "t": 28,
+        "fit_samples": 6934,
+        "pred_samples": 1653,
+        "fit_sec": 6.603734016418457
+      },
+      {
+        "t": 29,
+        "fit_samples": 6318,
+        "pred_samples": 4275,
+        "fit_sec": 6.756814241409302
+      },
+      {
+        "t": 30,
+        "fit_samples": 6851,
+        "pred_samples": 2483,
+        "fit_sec": 5.406720161437988
+      },
+      {
+        "t": 31,
+        "fit_samples": 5612,
+        "pred_samples": 2816,
+        "fit_sec": 6.379333257675171
+      },
+      {
+        "t": 32,
+        "fit_samples": 5135,
+        "pred_samples": 4525,
+        "fit_sec": 4.139987468719482
+      }
+    ],
+    "full_train_fit_sec": 30.381083011627197
+  },
+  "stage2_model": {
+    "mode": "local93_score_graph",
+    "train_steps": [
+      13,
+      32
+    ],
+    "n_estimators": 300,
+    "min_samples_leaf": 3,
+    "max_features": "sqrt",
+    "class_weight": "balanced_subsample",
+    "random_state": 7,
+    "n_features": 111
+  },
+  "metrics": {
+    "val_pr_auc": 0.9532353442512959,
+    "test_pr_auc": 0.904973724723228,
+    "test_roc_auc": 0.9649473357668931,
+    "test_brier": 0.02489034358049399
+  },
+  "elapsed_sec_total": 215.70034503936768
+}

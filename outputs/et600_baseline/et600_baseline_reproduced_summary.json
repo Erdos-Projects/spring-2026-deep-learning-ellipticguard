@@ -1,0 +1,29 @@
+{
+  "split": {
+    "train": [
+      1,
+      32
+    ],
+    "val": [
+      33,
+      37
+    ],
+    "test": [
+      38,
+      42
+    ]
+  },
+  "model": {
+    "type": "ExtraTreesClassifier",
+    "n_estimators": 600,
+    "max_features": "sqrt",
+    "class_weight": "balanced_subsample",
+    "random_state": 7
+  },
+  "metrics": {
+    "val_pr_auc": 0.9405203366572927,
+    "test_pr_auc": 0.8959594088519319,
+    "test_roc_auc": 0.9563914828385179,
+    "test_brier": 0.02536809439955804
+  }
+}

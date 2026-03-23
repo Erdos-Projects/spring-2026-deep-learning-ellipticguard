@@ -1,0 +1,8 @@
+{
+  "model": "final_combination_model",
+  "description": "GraphAgg head -> 0.4 SIGN + 0.6 stack -> SIGN tail",
+  "k1_test": 589,
+  "k2_test": 64,
+  "test_pr_auc": 0.9186530169173815,
+  "test_roc_auc": 0.9724702347727621
+}

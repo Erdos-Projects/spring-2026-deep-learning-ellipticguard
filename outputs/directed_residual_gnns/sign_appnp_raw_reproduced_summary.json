@@ -1,0 +1,43 @@
+{
+  "split": {
+    "train": [
+      1,
+      32
+    ],
+    "val": [
+      33,
+      37
+    ],
+    "test": [
+      38,
+      42
+    ]
+  },
+  "sign_best_validation_selected": {
+    "family": "sign_linear10_start13_local_rerun",
+    "seed": 37,
+    "best_epoch": 2,
+    "val_pr_auc": 0.9560241323617726,
+    "test_pr_auc": 0.9153551698745114,
+    "test_roc_auc": 0.9716359915031167,
+    "test_brier": 0.023307887167242657
+  },
+  "appnp_best_validation_selected": {
+    "family": "appnp_linear4_start13_local_rerun",
+    "seed": 37,
+    "best_epoch": 3,
+    "val_pr_auc": 0.9533312239013197,
+    "test_pr_auc": 0.9150206856114556,
+    "test_roc_auc": 0.9697349097449122,
+    "test_brier": 0.022924786805165395
+  },
+  "appnp_strongest_test_context": {
+    "family": "appnp_linear4_start13_local_rerun",
+    "seed": 37,
+    "best_epoch": 3,
+    "val_pr_auc": 0.9533312239013197,
+    "test_pr_auc": 0.9150206856114556,
+    "test_roc_auc": 0.9697349097449122,
+    "test_brier": 0.022924786805165395
+  }
+}
