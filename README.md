@@ -128,7 +128,7 @@ This is implemented in `graph_non_gnn_models/GraphAgg_ET.ipynb`, which builds a 
 
 | Model Name | Test PR-AUC |
 | --- | --- |
-| Matryoshka Hybrid | `TBD` |
+| Matryoshka Hybrid | `0.8943` |
 | Deep Neural Decision Forest | `TBD` |
 | Random Forest on Hybrid Features | `TBD` |
 | GraphAgg ET | `0.9050` |
