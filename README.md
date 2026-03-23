@@ -4,9 +4,13 @@
 ## Team Members
 
 Ran Li
+
 Shaoyang Zhou
+
 Rafael Miksian Magaldi
+
 Prakash Singh
+
 Tinghao Huang
 
 ## Project Description
